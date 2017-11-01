@@ -1,0 +1,86 @@
+<div>
+    <h2>
+        <span>Publicacion Mascota Perdidas</span>
+        <button class="btn btn-primary float-right jh-create-entity create-publicacion-mascota-perdida" [routerLink]="['/', { outlets: { popup: ['publicacion-mascota-perdida-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Publicacion Mascota Perdida
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="publicacionMascotaPerdidas">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fecha"><span>Fecha</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lugar"><span>Lugar</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fechaEncuentro"><span>Fecha Encuentro</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="estado"><span>Estado</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dueno.id"><span>Dueno</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="distrito.id"><span>Distrito</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mascota.id"><span>Mascota</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let publicacionMascotaPerdida of publicacionMascotaPerdidas ;trackBy: trackId">
+                <td><a [routerLink]="['../publicacion-mascota-perdida', publicacionMascotaPerdida.id ]">{{publicacionMascotaPerdida.id}}</a></td>
+                <td>{{publicacionMascotaPerdida.fecha | date:'medium'}}</td>
+                <td>{{publicacionMascotaPerdida.lugar}}</td>
+                <td>{{publicacionMascotaPerdida.fechaEncuentro | date:'medium'}}</td>
+                <td>{{publicacionMascotaPerdida.estado}}</td>
+                <td>
+                    {{publicacionMascotaPerdida.dueno?.id}}
+                </td>
+                <td>
+                    <div *ngIf="publicacionMascotaPerdida.distrito">
+                        <a [routerLink]="['../distrito', publicacionMascotaPerdida.distrito?.id ]" >{{publicacionMascotaPerdida.distrito?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="publicacionMascotaPerdida.mascota">
+                        <a [routerLink]="['../mascota', publicacionMascotaPerdida.mascota?.id ]" >{{publicacionMascotaPerdida.mascota?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../publicacion-mascota-perdida', publicacionMascotaPerdida.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'publicacion-mascota-perdida/'+ publicacionMascotaPerdida.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'publicacion-mascota-perdida/'+ publicacionMascotaPerdida.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="publicacionMascotaPerdidas && publicacionMascotaPerdidas.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

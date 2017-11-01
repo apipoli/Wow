@@ -1,0 +1,43 @@
+
+<div *ngIf="mascota">
+    <h2><span>Mascota</span> {{mascota.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{mascota.nombre}}</span>
+        </dd>
+        <dt><span>Meses</span></dt>
+        <dd>
+            <span>{{mascota.meses}}</span>
+        </dd>
+        <dt><span>Tamano</span></dt>
+        <dd>
+            <span>{{mascota.tamano}}</span>
+        </dd>
+        <dt><span>Raza</span></dt>
+        <dd>
+            <div *ngIf="mascota.raza">
+                <a [routerLink]="['/raza', mascota.raza?.id]">{{mascota.raza?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Dueno</span></dt>
+        <dd>
+            {{mascota.dueno?.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mascota/'+ mascota.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
