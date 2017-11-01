@@ -1,0 +1,51 @@
+
+entity Region {
+	nombre String required
+}
+
+entity Provincia {
+	nombre String required
+}
+relationship ManyToOne {
+	Provincia{region required} to Region
+}
+
+entity Distrito {
+	nombre String required
+}
+relationship ManyToOne {
+	Distrito {provincia required} to Provincia
+}
+
+enum Tamano {PEQUENO, MEDIANO, GRANDE}
+
+entity Raza {
+	nombre String required
+}
+
+entity Mascota {
+	nombre String required,
+    meses String required,
+    tamano Tamano required
+}
+relationship ManyToOne {
+    Mascota {raza required} to Raza,
+    Mascota {dueno required} to User
+}
+
+enum EstadoMascotaPerdida {
+	PERDIDA, ENCONTRADA
+}
+entity PublicacionMascotaPerdida {
+	fecha ZonedDateTime required,
+    lugar String required,
+    fechaEncuentro ZonedDateTime,
+    estado EstadoMascotaPerdida required
+}
+relationship ManyToOne {
+	PublicacionMascotaPerdida {dueno required} to User,
+    PublicacionMascotaPerdida {distrito required} to Distrito,
+    PublicacionMascotaPerdida {mascota required} to Mascota
+}
+
+paginate all with pagination

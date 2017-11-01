@@ -1,0 +1,87 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMascotaLabel">Create or edit a Mascota</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!mascota.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="mascota.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                [(ngModel)]="mascota.nombre" required />
+            <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nombre?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_meses">Meses</label>
+            <input type="text" class="form-control" name="meses" id="field_meses"
+                [(ngModel)]="mascota.meses" required />
+            <div [hidden]="!(editForm.controls.meses?.dirty && editForm.controls.meses?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.meses?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tamano">Tamano</label>
+            <select class="form-control" name="tamano" [(ngModel)]="mascota.tamano" id="field_tamano"  required>
+                <option value="PEQUENO">PEQUENO</option>
+                <option value="MEDIANO">MEDIANO</option>
+                <option value="GRANDE">GRANDE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.tamano?.dirty && editForm.controls.tamano?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.tamano?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_raza">Raza</label>
+            <select class="form-control" id="field_raza" name="raza" [(ngModel)]="mascota.raza"  required>
+                <option *ngIf="!editForm.value.raza" [ngValue]="null" selected></option>
+                <option [ngValue]="razaOption.id === mascota.raza?.id ? mascota.raza : razaOption" *ngFor="let razaOption of razas; trackBy: trackRazaById">{{razaOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.raza?.dirty && editForm.controls.raza?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.raza?.errors?.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dueno">Dueno</label>
+            <select class="form-control" id="field_dueno" name="dueno" [(ngModel)]="mascota.dueno"  required>
+                <option *ngIf="!editForm.value.dueno" [ngValue]="null" selected></option>
+                <option [ngValue]="userOption.id === mascota.dueno?.id ? mascota.dueno : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.dueno?.dirty && editForm.controls.dueno?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.dueno?.errors?.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
