@@ -88,6 +88,10 @@ currentAccount: any;
         this.registerChangeInPublicacionMascotaPerdidas();
     }
 
+    isAuthenticated(): boolean {
+        return this.principal.isAuthenticated();
+    }
+
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
