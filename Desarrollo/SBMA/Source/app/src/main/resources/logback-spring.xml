@@ -22,7 +22,7 @@
     </appender>
 -->
 
-    <logger name="pw.wow.sbma" level="#logback.loglevel#"/>
+    <logger name="pe.wow.sbma" level="#logback.loglevel#"/>
 
     <logger name="io.github.jhipster" level="#logback.loglevel#"/>
 

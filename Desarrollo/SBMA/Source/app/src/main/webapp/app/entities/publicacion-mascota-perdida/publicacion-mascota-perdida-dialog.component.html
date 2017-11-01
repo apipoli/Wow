@@ -1,7 +1,7 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myPublicacionMascotaPerdidaLabel">Create or edit a Publicacion Mascota Perdida</h4>
+        <h4 class="modal-title" id="myPublicacionMascotaPerdidaLabel">Registrar Publicacion Mascota Perdida</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
@@ -21,7 +21,7 @@
             <div [hidden]="!(editForm.controls.fecha?.dirty && editForm.controls.fecha?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.fecha?.errors?.required">
-                   This field is required.
+                   Campo obligatorio.
                 </small>
                 <small class="form-text text-danger"
                     [hidden]="!editForm.controls.fecha?.errors?.ZonedDateTimelocal">
@@ -36,7 +36,7 @@
             <div [hidden]="!(editForm.controls.lugar?.dirty && editForm.controls.lugar?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.lugar?.errors?.required">
-                   This field is required.
+                   Campo obligatorio.
                 </small>
             </div>
         </div>
@@ -56,57 +56,57 @@
             <div [hidden]="!(editForm.controls.estado?.dirty && editForm.controls.estado?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.estado?.errors?.required">
-                   This field is required.
+                   Campo obligatorio.
                 </small>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="form-control-label" for="field_dueno">Dueno</label>
+            <label class="form-control-label" for="field_dueno">Dueño</label>
             <select class="form-control" id="field_dueno" name="dueno" [(ngModel)]="publicacionMascotaPerdida.dueno"  required>
                 <option *ngIf="!editForm.value.dueno" [ngValue]="null" selected></option>
-                <option [ngValue]="userOption.id === publicacionMascotaPerdida.dueno?.id ? publicacionMascotaPerdida.dueno : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                <option [ngValue]="userOption.id === publicacionMascotaPerdida.dueno?.id ? publicacionMascotaPerdida.dueno : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.dueno?.dirty && editForm.controls.dueno?.invalid)">
             <small class="form-text text-danger"
                 [hidden]="!editForm.controls.dueno?.errors?.required">
-                This field is required.
+                Campo obligatorio.
             </small>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_distrito">Distrito</label>
             <select class="form-control" id="field_distrito" name="distrito" [(ngModel)]="publicacionMascotaPerdida.distrito"  required>
                 <option *ngIf="!editForm.value.distrito" [ngValue]="null" selected></option>
-                <option [ngValue]="distritoOption.id === publicacionMascotaPerdida.distrito?.id ? publicacionMascotaPerdida.distrito : distritoOption" *ngFor="let distritoOption of distritos; trackBy: trackDistritoById">{{distritoOption.id}}</option>
+                <option [ngValue]="distritoOption.id === publicacionMascotaPerdida.distrito?.id ? publicacionMascotaPerdida.distrito : distritoOption" *ngFor="let distritoOption of distritos; trackBy: trackDistritoById">{{distritoOption.nombre}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.distrito?.dirty && editForm.controls.distrito?.invalid)">
             <small class="form-text text-danger"
                 [hidden]="!editForm.controls.distrito?.errors?.required">
-                This field is required.
+                Campo obligatorio.
             </small>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_mascota">Mascota</label>
             <select class="form-control" id="field_mascota" name="mascota" [(ngModel)]="publicacionMascotaPerdida.mascota"  required>
                 <option *ngIf="!editForm.value.mascota" [ngValue]="null" selected></option>
-                <option [ngValue]="mascotaOption.id === publicacionMascotaPerdida.mascota?.id ? publicacionMascotaPerdida.mascota : mascotaOption" *ngFor="let mascotaOption of mascotas; trackBy: trackMascotaById">{{mascotaOption.id}}</option>
+                <option [ngValue]="mascotaOption.id === publicacionMascotaPerdida.mascota?.id ? publicacionMascotaPerdida.mascota : mascotaOption" *ngFor="let mascotaOption of mascotas; trackBy: trackMascotaById">{{mascotaOption.nombre}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.mascota?.dirty && editForm.controls.mascota?.invalid)">
             <small class="form-text text-danger"
                 [hidden]="!editForm.controls.mascota?.errors?.required">
-                This field is required.
+                Campo obligatorio.
             </small>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancelar</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span>Guardar</span>
         </button>
     </div>
 </form>

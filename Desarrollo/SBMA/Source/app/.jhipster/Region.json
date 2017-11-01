@@ -10,10 +10,10 @@
             ]
         }
     ],
-    "changelogDate": "20171101041745",
+    "changelogDate": "20171101034444",
     "entityTableName": "region",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false
 }

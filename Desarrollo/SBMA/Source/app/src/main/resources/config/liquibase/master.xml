@@ -10,19 +10,11 @@
     <include file="config/liquibase/changelog/20171101034446_added_entity_Distrito.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171101034447_added_entity_Raza.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171101034449_added_entity_Mascota.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20171101041745_added_entity_Region.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20171101041746_added_entity_Provincia.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20171101041747_added_entity_Distrito.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20171101041748_added_entity_Raza.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20171101041749_added_entity_Mascota.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171101041750_added_entity_PublicacionMascotaPerdida.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20171101034445_added_entity_constraints_Provincia.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171101034446_added_entity_constraints_Distrito.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171101034449_added_entity_constraints_Mascota.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20171101041746_added_entity_constraints_Provincia.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20171101041747_added_entity_constraints_Distrito.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20171101041749_added_entity_constraints_Mascota.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171101041750_added_entity_constraints_PublicacionMascotaPerdida.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

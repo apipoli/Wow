@@ -6,21 +6,21 @@
             "relationshipValidateRules": "required",
             "relationshipName": "dueno",
             "otherEntityName": "user",
-            "otherEntityField": "id"
+            "otherEntityField": "login"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "distrito",
             "otherEntityName": "distrito",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "mascota",
             "otherEntityName": "mascota",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         }
     ],
     "fields": [
@@ -55,6 +55,6 @@
     "entityTableName": "publicacion_mascota_perdida",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false
 }

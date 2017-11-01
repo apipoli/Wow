@@ -38,26 +38,26 @@ export class RegionDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.region.id !== undefined) {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.regionService.update(this.region));
         } else {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.regionService.create(this.region));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Region>) {
+    private subscribeToGuardarResponse(result: Observable<Region>) {
         result.subscribe((res: Region) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+            this.onGuardarSuccess(res), (res: Response) => this.onGuardarError());
     }
 
-    private onSaveSuccess(result: Region) {
+    private onGuardarSuccess(result: Region) {
         this.eventManager.broadcast({ name: 'regionListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError() {
+    private onGuardarError() {
         this.isSaving = false;
     }
 

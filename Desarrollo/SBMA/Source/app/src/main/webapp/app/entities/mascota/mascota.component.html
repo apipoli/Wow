@@ -4,7 +4,7 @@
         <button class="btn btn-primary float-right jh-create-entity create-mascota" [routerLink]="['/', { outlets: { popup: ['mascota-new'] } }]">
             <span class="fa fa-plus"></span>
             <span >
-            Create new Mascota
+            Agregar Mascota
             </span>
         </button>
     </h2>
@@ -19,9 +19,11 @@
             <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nombre"><span>Nombre</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="meses"><span>Meses</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="tamano"><span>Tamano</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="raza.id"><span>Raza</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="dueno.id"><span>Dueno</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tamano"><span>Tamaño</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sexo"><span>Sexo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="foto"><span>Foto</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="raza.nombre"><span>Raza</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dueno.id"><span>Dueño</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -29,15 +31,22 @@
             <tr *ngFor="let mascota of mascotas ;trackBy: trackId">
                 <td><a [routerLink]="['../mascota', mascota.id ]">{{mascota.id}}</a></td>
                 <td>{{mascota.nombre}}</td>
-                <td>{{mostrarEdad(mascota.meses)}}</td>
+                <td>{{mascota.meses}}</td>
                 <td>{{mascota.tamano}}</td>
+                <td>{{mascota.sexo}}</td>
+                <td>
+                    <a *ngIf="mascota.foto" (click)="openFile(mascota.fotoContentType, mascota.foto)">
+                        <img [src]="'data:' + mascota.fotoContentType + ';base64,' + mascota.foto" style="max-height: 30px;" alt="mascota image"/>
+                    </a>
+                    <span *ngIf="mascota.foto">{{mascota.fotoContentType}}, {{byteSize(mascota.foto)}}</span>
+                </td>
                 <td>
                     <div *ngIf="mascota.raza">
-                        <a [routerLink]="['../raza', mascota.raza?.id ]" >{{mascota.raza.nombre}}</a>
+                        <a [routerLink]="['../raza', mascota.raza?.id ]" >{{mascota.raza?.nombre}}</a>
                     </div>
                 </td>
                 <td>
-                    {{mascota.dueno.login}}
+                    {{mascota.dueno?.id}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
@@ -52,14 +61,14 @@
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline">Editar</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'mascota/'+ mascota.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline">Eliminar</span>
                         </button>
                     </div>
                 </td>

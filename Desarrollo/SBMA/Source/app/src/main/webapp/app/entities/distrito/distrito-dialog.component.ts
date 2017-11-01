@@ -45,26 +45,26 @@ export class DistritoDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.distrito.id !== undefined) {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.distritoService.update(this.distrito));
         } else {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.distritoService.create(this.distrito));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Distrito>) {
+    private subscribeToGuardarResponse(result: Observable<Distrito>) {
         result.subscribe((res: Distrito) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+            this.onGuardarSuccess(res), (res: Response) => this.onGuardarError());
     }
 
-    private onSaveSuccess(result: Distrito) {
+    private onGuardarSuccess(result: Distrito) {
         this.eventManager.broadcast({ name: 'distritoListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError() {
+    private onGuardarError() {
         this.isSaving = false;
     }
 

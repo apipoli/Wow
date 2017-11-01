@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { Mascota } from './mascota.model';
 import { MascotaPopupService } from './mascota-popup.service';
@@ -18,7 +18,8 @@ import { ResponseWrapper } from '../../shared';
     templateUrl: './mascota-dialog.component.html'
 })
 export class MascotaDialogComponent implements OnInit {
-
+    anhos: number;
+    meses: number;
     mascota: Mascota;
     isSaving: boolean;
 
@@ -28,10 +29,12 @@ export class MascotaDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
+        private dataUtils: JhiDataUtils,
         private jhiAlertService: JhiAlertService,
         private mascotaService: MascotaService,
         private razaService: RazaService,
         private userService: UserService,
+        private elementRef: ElementRef,
         private eventManager: JhiEventManager
     ) {
     }
@@ -44,33 +47,50 @@ export class MascotaDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
+
+    setFileData(event, entity, field, isImage) {
+        this.dataUtils.setFileData(event, entity, field, isImage);
+    }
+
+    clearInputImage(field: string, fieldContentType: string, idInput: string) {
+        this.dataUtils.clearInputImage(this.mascota, this.elementRef, field, fieldContentType, idInput);
+    }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }
 
     save() {
         this.isSaving = true;
+        this.mascota.meses = this.anhos * 12 + this.meses;
         if (this.mascota.id !== undefined) {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.mascotaService.update(this.mascota));
         } else {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.mascotaService.create(this.mascota));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Mascota>) {
+    private subscribeToGuardarResponse(result: Observable<Mascota>) {
         result.subscribe((res: Mascota) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+            this.onGuardarSuccess(res), (res: Response) => this.onGuardarError());
     }
 
-    private onSaveSuccess(result: Mascota) {
+    private onGuardarSuccess(result: Mascota) {
         this.eventManager.broadcast({ name: 'mascotaListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError() {
+    private onGuardarError() {
         this.isSaving = false;
     }
 

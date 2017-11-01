@@ -45,26 +45,26 @@ export class ProvinciaDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.provincia.id !== undefined) {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.provinciaService.update(this.provincia));
         } else {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.provinciaService.create(this.provincia));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Provincia>) {
+    private subscribeToGuardarResponse(result: Observable<Provincia>) {
         result.subscribe((res: Provincia) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+            this.onGuardarSuccess(res), (res: Response) => this.onGuardarError());
     }
 
-    private onSaveSuccess(result: Provincia) {
+    private onGuardarSuccess(result: Provincia) {
         this.eventManager.broadcast({ name: 'provinciaListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError() {
+    private onGuardarError() {
         this.isSaving = false;
     }
 

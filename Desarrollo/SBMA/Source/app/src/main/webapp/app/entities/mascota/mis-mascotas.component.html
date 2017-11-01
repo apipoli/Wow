@@ -1,0 +1,75 @@
+<div>
+    <h2>
+        <span>Mis Mascotas</span>
+        <button class="btn btn-primary float-right jh-create-entity create-mascota" [routerLink]="['/', { outlets: { popup: ['mascota-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Agregar Mascota
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="mascotas">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Nombre</span></th>
+            <th><span>Edad</span></th>
+            <th><span>Tamaño</span></th>
+            <th><span>Sexo</span></th>
+            <th><span>Foto</span></th>
+            <th><span>Raza</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mascota of mascotas ;trackBy: trackId">
+                <td><a [routerLink]="['../mascota', mascota.id ]">{{mascota.id}}</a></td>
+                <td>{{mascota.nombre}}</td>
+                <td>{{mascota.meses}}</td>
+                <td>{{mascota.tamano}}</td>
+                <td>{{mascota.sexo}}</td>
+                <td>
+                    <a *ngIf="mascota.foto" (click)="openFile(mascota.fotoContentType, mascota.foto)">
+                        <img [src]="'data:' + mascota.fotoContentType + ';base64,' + mascota.foto" style="max-height: 30px;" alt="mascota image"/>
+                    </a>
+                    <span *ngIf="mascota.foto">{{mascota.fotoContentType}}, {{byteSize(mascota.foto)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="mascota.raza">
+                        <a [routerLink]="['../raza', mascota.raza?.id ]" >{{mascota.raza?.nombre}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../mascota', mascota.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mascota/'+ mascota.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Editar</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'mascota/'+ mascota.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Eliminar</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

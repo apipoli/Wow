@@ -27,6 +27,18 @@ export class PublicacionMascotaPerdidaResolvePagingParams implements Resolve<any
 
 export const publicacionMascotaPerdidaRoute: Routes = [
     {
+        path: 'mascotas-perdidas',
+        component: PublicacionMascotaPerdidaComponent,
+        resolve: {
+            'pagingParams': PublicacionMascotaPerdidaResolvePagingParams
+        },
+        data: {
+            authorities: [],
+            pageTitle: 'Mascotas perdidas'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
         path: 'publicacion-mascota-perdida',
         component: PublicacionMascotaPerdidaComponent,
         resolve: {

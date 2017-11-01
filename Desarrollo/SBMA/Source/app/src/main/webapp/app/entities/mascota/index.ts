@@ -5,4 +5,5 @@ export * from './mascota-dialog.component';
 export * from './mascota-delete-dialog.component';
 export * from './mascota-detail.component';
 export * from './mascota.component';
+export * from './mis-mascotas.component';
 export * from './mascota.route';

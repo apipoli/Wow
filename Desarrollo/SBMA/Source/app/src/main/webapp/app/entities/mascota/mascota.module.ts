@@ -7,6 +7,7 @@ import {
     MascotaService,
     MascotaPopupService,
     MascotaComponent,
+    MisMascotasComponent,
     MascotaDetailComponent,
     MascotaDialogComponent,
     MascotaPopupComponent,
@@ -30,6 +31,7 @@ const ENTITY_STATES = [
     ],
     declarations: [
         MascotaComponent,
+        MisMascotasComponent,
         MascotaDetailComponent,
         MascotaDialogComponent,
         MascotaDeleteDialogComponent,
@@ -38,6 +40,7 @@ const ENTITY_STATES = [
     ],
     entryComponents: [
         MascotaComponent,
+        MisMascotasComponent,
         MascotaDialogComponent,
         MascotaPopupComponent,
         MascotaDeleteDialogComponent,

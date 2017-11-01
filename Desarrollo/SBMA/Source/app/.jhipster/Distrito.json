@@ -6,7 +6,7 @@
             "relationshipValidateRules": "required",
             "relationshipName": "provincia",
             "otherEntityName": "provincia",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         }
     ],
     "fields": [
@@ -18,10 +18,10 @@
             ]
         }
     ],
-    "changelogDate": "20171101041747",
+    "changelogDate": "20171101034446",
     "entityTableName": "distrito",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false
 }

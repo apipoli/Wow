@@ -10,10 +10,10 @@
             ]
         }
     ],
-    "changelogDate": "20171101041748",
+    "changelogDate": "20171101034447",
     "entityTableName": "raza",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false
 }
