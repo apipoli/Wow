@@ -12,6 +12,8 @@ import { MascotaService } from './mascota.service';
 import { Raza, RazaService } from '../raza';
 import { User, UserService } from '../../shared';
 import { ResponseWrapper } from '../../shared';
+import {Principal} from '../../shared/auth/principal.service';
+import {Account} from "../../shared/user/account.model";
 
 @Component({
     selector: 'jhi-mascota-dialog',
@@ -26,6 +28,7 @@ export class MascotaDialogComponent implements OnInit {
     razas: Raza[];
 
     users: User[];
+    account: Account;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -35,11 +38,22 @@ export class MascotaDialogComponent implements OnInit {
         private razaService: RazaService,
         private userService: UserService,
         private elementRef: ElementRef,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private principal: Principal,
     ) {
     }
 
     ngOnInit() {
+        if (this.mascota.id === undefined) {
+            this.meses = 0;
+            this.principal.identity().then((account) => {
+                this.account = account;
+                this.userService.find(this.account.login).subscribe((user) => {
+                    this.mascota.dueno = user;
+                    console.log(this.mascota);
+                });
+            });
+        }
         this.isSaving = false;
         this.razaService.query()
             .subscribe((res: ResponseWrapper) => { this.razas = res.json; }, (res: ResponseWrapper) => this.onError(res.json));

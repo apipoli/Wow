@@ -9,7 +9,7 @@
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group row">
             <label class="form-control-label col-2" for="field_raza">Raza</label>
-            <div class="col-4">
+            <div class="col-10">
                 <select class="form-control" id="field_raza" name="raza" [(ngModel)]="mascota.raza"  required>
                     <option *ngIf="!editForm.value.raza" [ngValue]="null" selected></option>
                     <option [ngValue]="razaOption.id === mascota.raza?.id ? mascota.raza : razaOption" *ngFor="let razaOption of razas; trackBy: trackRazaById">{{razaOption.nombre}}</option>
@@ -21,6 +21,8 @@
                     </small>
                 </div>
             </div>
+        </div>
+        <div class="form-group row">
             <label class="form-control-label col-2" for="field_nombre">Nombre</label>
             <div class="col-4">
                 <input type="text" class="form-control" name="nombre" id="field_nombre"
@@ -28,45 +30,6 @@
                 <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
                     <small class="form-text text-danger"
                            [hidden]="!editForm.controls.nombre?.errors?.required">
-                        Campo obligatorio.
-                    </small>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="form-control-label col-2" for="field_anhos">Edad</label>
-            <div class="col-5">
-                <input type="number" class="form-control" name="anhos" id="field_anhos"
-                       [(ngModel)]="anhos" required placeholder="Años" min="0" max="20" />
-                <div [hidden]="!(editForm.controls.anhos?.dirty && editForm.controls.anhos?.invalid)">
-                    <small class="form-text text-danger"
-                           [hidden]="!editForm.controls.anhos?.errors?.required">
-                        Campo obligatorio.
-                    </small>
-                </div>
-            </div>
-            <div class="col-5">
-                <input type="number" class="form-control" name="meses" id="field_meses"
-                       [(ngModel)]="meses" required placeholder="Meses" min="0" max="11"/>
-                <div [hidden]="!(editForm.controls.meses?.dirty && editForm.controls.meses?.invalid)">
-                    <small class="form-text text-danger"
-                           [hidden]="!editForm.controls.meses?.errors?.required">
-                        Campo obligatorio.
-                    </small>
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="form-control-label col-2" for="field_tamano">Tamaño</label>
-            <div class="col-4">
-                <select class="form-control" name="tamano" [(ngModel)]="mascota.tamano" id="field_tamano"  required>
-                    <option value="PEQUENO">PEQUEÑO</option>
-                    <option value="MEDIANO">MEDIANO</option>
-                    <option value="GRANDE">GRANDE</option>
-                </select>
-                <div [hidden]="!(editForm.controls.tamano?.dirty && editForm.controls.tamano?.invalid)">
-                    <small class="form-text text-danger"
-                           [hidden]="!editForm.controls.tamano?.errors?.required">
                         Campo obligatorio.
                     </small>
                 </div>
@@ -80,6 +43,43 @@
                 <div [hidden]="!(editForm.controls.sexo?.dirty && editForm.controls.sexo?.invalid)">
                     <small class="form-text text-danger"
                            [hidden]="!editForm.controls.sexo?.errors?.required">
+                        Campo obligatorio.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="form-control-label col-2" for="field_anhos">Edad</label>
+            <div class="col-2">
+                <input type="number" class="form-control" name="anhos" id="field_anhos"
+                       [(ngModel)]="anhos" required placeholder="Años" min="0" max="20" />
+                <div [hidden]="!(editForm.controls.anhos?.dirty && editForm.controls.anhos?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.anhos?.errors?.required">
+                        Campo obligatorio.
+                    </small>
+                </div>
+            </div>
+            <div class="col-2">
+                <input type="number" class="form-control" name="meses" id="field_meses"
+                       [(ngModel)]="meses" required placeholder="Meses" min="0" max="11"/>
+                <div [hidden]="!(editForm.controls.meses?.dirty && editForm.controls.meses?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.meses?.errors?.required">
+                        Campo obligatorio.
+                    </small>
+                </div>
+            </div>
+            <label class="form-control-label col-2" for="field_tamano">Tamaño</label>
+            <div class="col-4">
+                <select class="form-control" name="tamano" [(ngModel)]="mascota.tamano" id="field_tamano"  required>
+                    <option value="PEQUENO">PEQUEÑO</option>
+                    <option value="MEDIANO">MEDIANO</option>
+                    <option value="GRANDE">GRANDE</option>
+                </select>
+                <div [hidden]="!(editForm.controls.tamano?.dirty && editForm.controls.tamano?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.tamano?.errors?.required">
                         Campo obligatorio.
                     </small>
                 </div>
