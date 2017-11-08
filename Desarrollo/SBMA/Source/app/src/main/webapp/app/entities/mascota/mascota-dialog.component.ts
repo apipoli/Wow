@@ -13,7 +13,7 @@ import { Raza, RazaService } from '../raza';
 import { User, UserService } from '../../shared';
 import { ResponseWrapper } from '../../shared';
 import {Principal} from '../../shared/auth/principal.service';
-import {Account} from "../../shared/user/account.model";
+import {Account} from '../../shared/user/account.model';
 
 @Component({
     selector: 'jhi-mascota-dialog',

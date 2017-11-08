@@ -43,7 +43,7 @@ public class Mascota implements Serializable {
 
     @NotNull
     @Lob
-    @Column(name = "foto", nullable = false)
+    @Column(name = "foto", nullable = false, length = 10000000, columnDefinition = "MEDIUMBLOB")
     private byte[] foto;
 
     @Column(name = "foto_content_type", nullable = false)
