@@ -33,7 +33,7 @@ export const regionRoute: Routes = [
             'pagingParams': RegionResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Regions'
         },
         canActivate: [UserRouteAccessService]
@@ -41,7 +41,7 @@ export const regionRoute: Routes = [
         path: 'region/:id',
         component: RegionDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Regions'
         },
         canActivate: [UserRouteAccessService]
@@ -53,7 +53,7 @@ export const regionPopupRoute: Routes = [
         path: 'region-new',
         component: RegionPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Regions'
         },
         canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const regionPopupRoute: Routes = [
         path: 'region/:id/edit',
         component: RegionPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Regions'
         },
         canActivate: [UserRouteAccessService],
@@ -73,7 +73,7 @@ export const regionPopupRoute: Routes = [
         path: 'region/:id/delete',
         component: RegionDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Regions'
         },
         canActivate: [UserRouteAccessService],

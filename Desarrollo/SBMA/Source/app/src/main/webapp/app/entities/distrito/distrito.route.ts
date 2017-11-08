@@ -33,7 +33,7 @@ export const distritoRoute: Routes = [
             'pagingParams': DistritoResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Distritos'
         },
         canActivate: [UserRouteAccessService]
@@ -41,7 +41,7 @@ export const distritoRoute: Routes = [
         path: 'distrito/:id',
         component: DistritoDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Distritos'
         },
         canActivate: [UserRouteAccessService]
@@ -53,7 +53,7 @@ export const distritoPopupRoute: Routes = [
         path: 'distrito-new',
         component: DistritoPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Distritos'
         },
         canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const distritoPopupRoute: Routes = [
         path: 'distrito/:id/edit',
         component: DistritoPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Distritos'
         },
         canActivate: [UserRouteAccessService],
@@ -73,7 +73,7 @@ export const distritoPopupRoute: Routes = [
         path: 'distrito/:id/delete',
         component: DistritoDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Distritos'
         },
         canActivate: [UserRouteAccessService],

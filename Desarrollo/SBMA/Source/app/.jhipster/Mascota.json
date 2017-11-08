@@ -6,7 +6,7 @@
             "relationshipValidateRules": "required",
             "relationshipName": "raza",
             "otherEntityName": "raza",
-            "otherEntityField": "id"
+            "otherEntityField": "nombre"
         },
         {
             "relationshipType": "many-to-one",
@@ -26,7 +26,7 @@
         },
         {
             "fieldName": "meses",
-            "fieldType": "String",
+            "fieldType": "Integer",
             "fieldValidateRules": [
                 "required"
             ]
@@ -38,12 +38,28 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "sexo",
+            "fieldType": "Sexo",
+            "fieldValues": "MACHO,HEMBRA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "foto",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
-    "changelogDate": "20171101041749",
-    "entityTableName": "mascota",
+    "changelogDate": "20171101034449",
     "dto": "no",
-    "pagination": "pagination",
-    "service": "no",
-    "jpaMetamodelFiltering": false
+    "service": "serviceClass",
+    "entityTableName": "mascota",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
 }

@@ -57,26 +57,26 @@ export class PublicacionMascotaPerdidaDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.publicacionMascotaPerdida.id !== undefined) {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.publicacionMascotaPerdidaService.update(this.publicacionMascotaPerdida));
         } else {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.publicacionMascotaPerdidaService.create(this.publicacionMascotaPerdida));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<PublicacionMascotaPerdida>) {
+    private subscribeToGuardarResponse(result: Observable<PublicacionMascotaPerdida>) {
         result.subscribe((res: PublicacionMascotaPerdida) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+            this.onGuardarSuccess(res), (res: Response) => this.onGuardarError());
     }
 
-    private onSaveSuccess(result: PublicacionMascotaPerdida) {
+    private onGuardarSuccess(result: PublicacionMascotaPerdida) {
         this.eventManager.broadcast({ name: 'publicacionMascotaPerdidaListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError() {
+    private onGuardarError() {
         this.isSaving = false;
     }
 

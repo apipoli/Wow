@@ -33,7 +33,7 @@ export const provinciaRoute: Routes = [
             'pagingParams': ProvinciaResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Provincias'
         },
         canActivate: [UserRouteAccessService]
@@ -41,7 +41,7 @@ export const provinciaRoute: Routes = [
         path: 'provincia/:id',
         component: ProvinciaDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Provincias'
         },
         canActivate: [UserRouteAccessService]
@@ -53,7 +53,7 @@ export const provinciaPopupRoute: Routes = [
         path: 'provincia-new',
         component: ProvinciaPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Provincias'
         },
         canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const provinciaPopupRoute: Routes = [
         path: 'provincia/:id/edit',
         component: ProvinciaPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Provincias'
         },
         canActivate: [UserRouteAccessService],
@@ -73,7 +73,7 @@ export const provinciaPopupRoute: Routes = [
         path: 'provincia/:id/delete',
         component: ProvinciaDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Provincias'
         },
         canActivate: [UserRouteAccessService],

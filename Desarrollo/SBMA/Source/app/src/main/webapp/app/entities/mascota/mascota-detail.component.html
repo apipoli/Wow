@@ -12,17 +12,30 @@
         <dd>
             <span>{{mascota.meses}}</span>
         </dd>
-        <dt><span>Tamano</span></dt>
+        <dt><span>Tamaño</span></dt>
         <dd>
             <span>{{mascota.tamano}}</span>
+        </dd>
+        <dt><span>Sexo</span></dt>
+        <dd>
+            <span>{{mascota.sexo}}</span>
+        </dd>
+        <dt><span>Foto</span></dt>
+        <dd>
+            <div *ngIf="mascota.foto">
+                <a (click)="openFile(mascota.fotoContentType, mascota.foto)">
+                    <img [src]="'data:' + mascota.fotoContentType + ';base64,' + mascota.foto" style="max-width: 100%;" alt="mascota image"/>
+                </a>
+                {{mascota.fotoContentType}}, {{byteSize(mascota.foto)}}
+            </div>
         </dd>
         <dt><span>Raza</span></dt>
         <dd>
             <div *ngIf="mascota.raza">
-                <a [routerLink]="['/raza', mascota.raza?.id]">{{mascota.raza?.id}}</a>
+                <a [routerLink]="['/raza', mascota.raza?.id]">{{mascota.raza?.nombre}}</a>
             </div>
         </dd>
-        <dt><span>Dueno</span></dt>
+        <dt><span>Dueño</span></dt>
         <dd>
             {{mascota.dueno?.id}}
         </dd>
@@ -31,13 +44,13 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Retroceder</span>
     </button>
 
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'mascota/'+ mascota.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Editar</span>
     </button>
 </div>

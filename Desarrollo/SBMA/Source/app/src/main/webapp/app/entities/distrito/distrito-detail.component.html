@@ -11,7 +11,7 @@
         <dt><span>Provincia</span></dt>
         <dd>
             <div *ngIf="distrito.provincia">
-                <a [routerLink]="['/provincia', distrito.provincia?.id]">{{distrito.provincia?.id}}</a>
+                <a [routerLink]="['/provincia', distrito.provincia?.id]">{{distrito.provincia?.nombre}}</a>
             </div>
         </dd>
     </dl>
@@ -19,13 +19,13 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Retroceder</span>
     </button>
 
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'distrito/'+ distrito.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Editar</span>
     </button>
 </div>

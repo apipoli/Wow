@@ -38,26 +38,26 @@ export class RazaDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.raza.id !== undefined) {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.razaService.update(this.raza));
         } else {
-            this.subscribeToSaveResponse(
+            this.subscribeToGuardarResponse(
                 this.razaService.create(this.raza));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Raza>) {
+    private subscribeToGuardarResponse(result: Observable<Raza>) {
         result.subscribe((res: Raza) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError());
+            this.onGuardarSuccess(res), (res: Response) => this.onGuardarError());
     }
 
-    private onSaveSuccess(result: Raza) {
+    private onGuardarSuccess(result: Raza) {
         this.eventManager.broadcast({ name: 'razaListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError() {
+    private onGuardarError() {
         this.isSaving = false;
     }
 

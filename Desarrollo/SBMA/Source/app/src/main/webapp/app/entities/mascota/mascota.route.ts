@@ -8,6 +8,7 @@ import { MascotaComponent } from './mascota.component';
 import { MascotaDetailComponent } from './mascota-detail.component';
 import { MascotaPopupComponent } from './mascota-dialog.component';
 import { MascotaDeletePopupComponent } from './mascota-delete-dialog.component';
+import {MisMascotasComponent} from './mis-mascotas.component';
 
 @Injectable()
 export class MascotaResolvePagingParams implements Resolve<any> {
@@ -27,6 +28,15 @@ export class MascotaResolvePagingParams implements Resolve<any> {
 
 export const mascotaRoute: Routes = [
     {
+        path: 'mis-mascotas',
+        component: MisMascotasComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Mis Mascotas'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
         path: 'mascota',
         component: MascotaComponent,
         resolve: {
@@ -34,7 +44,7 @@ export const mascotaRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Mascotas'
+            pageTitle: 'Mis Mascotas'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -42,7 +52,7 @@ export const mascotaRoute: Routes = [
         component: MascotaDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Mascotas'
+            pageTitle: 'Mi Mascota'
         },
         canActivate: [UserRouteAccessService]
     }

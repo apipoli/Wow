@@ -33,7 +33,7 @@ export const razaRoute: Routes = [
             'pagingParams': RazaResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Razas'
         },
         canActivate: [UserRouteAccessService]
@@ -41,7 +41,7 @@ export const razaRoute: Routes = [
         path: 'raza/:id',
         component: RazaDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Razas'
         },
         canActivate: [UserRouteAccessService]
@@ -53,7 +53,7 @@ export const razaPopupRoute: Routes = [
         path: 'raza-new',
         component: RazaPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Razas'
         },
         canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const razaPopupRoute: Routes = [
         path: 'raza/:id/edit',
         component: RazaPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Razas'
         },
         canActivate: [UserRouteAccessService],
@@ -73,7 +73,7 @@ export const razaPopupRoute: Routes = [
         path: 'raza/:id/delete',
         component: RazaDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Razas'
         },
         canActivate: [UserRouteAccessService],
