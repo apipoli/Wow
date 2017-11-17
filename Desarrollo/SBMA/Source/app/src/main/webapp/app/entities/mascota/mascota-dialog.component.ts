@@ -53,6 +53,9 @@ export class MascotaDialogComponent implements OnInit {
                     console.log(this.mascota);
                 });
             });
+        } else {
+            this.meses = this.mascota.meses % 12;
+            this.anhos = this.mascota.meses / 12;
         }
         this.isSaving = false;
         this.razaService.query()

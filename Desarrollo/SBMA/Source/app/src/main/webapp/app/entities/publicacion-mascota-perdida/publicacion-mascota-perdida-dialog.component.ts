@@ -6,13 +6,14 @@ import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { PublicacionMascotaPerdida } from './publicacion-mascota-perdida.model';
+import {EstadoMascotaPerdida, PublicacionMascotaPerdida} from './publicacion-mascota-perdida.model';
 import { PublicacionMascotaPerdidaPopupService } from './publicacion-mascota-perdida-popup.service';
 import { PublicacionMascotaPerdidaService } from './publicacion-mascota-perdida.service';
 import { User, UserService } from '../../shared';
 import { Distrito, DistritoService } from '../distrito';
 import { Mascota, MascotaService } from '../mascota';
 import { ResponseWrapper } from '../../shared';
+import {Principal} from '../../shared/auth/principal.service';
 
 @Component({
     selector: 'jhi-publicacion-mascota-perdida-dialog',
@@ -36,7 +37,8 @@ export class PublicacionMascotaPerdidaDialogComponent implements OnInit {
         private userService: UserService,
         private distritoService: DistritoService,
         private mascotaService: MascotaService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private principal: Principal,
     ) {
     }
 
@@ -48,6 +50,12 @@ export class PublicacionMascotaPerdidaDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.distritos = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.mascotaService.query()
             .subscribe((res: ResponseWrapper) => { this.mascotas = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        if (this.publicacionMascotaPerdida.id === undefined) {
+            this.principal.identity().then((account) => {
+                this.publicacionMascotaPerdida.dueno = account;
+                this.publicacionMascotaPerdida.estado = EstadoMascotaPerdida.PERDIDA;
+            });
+        }
     }
 
     clear() {

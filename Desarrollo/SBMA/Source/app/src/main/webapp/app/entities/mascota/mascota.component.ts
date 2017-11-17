@@ -73,6 +73,10 @@ currentAccount: any;
         this.loadAll();
     }
 
+    getEdad(mascota: Mascota): number {
+        return mascota.meses > 11 ? mascota.meses / 12 : 1;
+    }
+
     clear() {
         this.page = 0;
         this.router.navigate(['/mascota', {

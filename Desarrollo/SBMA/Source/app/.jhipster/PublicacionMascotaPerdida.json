@@ -49,12 +49,20 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "recompensa",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
         }
     ],
     "changelogDate": "20171101041750",
-    "entityTableName": "publicacion_mascota_perdida",
     "dto": "no",
-    "pagination": "pagination",
     "service": "serviceClass",
-    "jpaMetamodelFiltering": false
+    "entityTableName": "publicacion_mascota_perdida",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
 }

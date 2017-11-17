@@ -49,6 +49,9 @@ currentAccount: any;
         }]);
         this.loadAll();
     }
+    getEdad(mascota: Mascota): number {
+        return mascota.meses > 11 ? mascota.meses / 12 : 1;
+    }
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {

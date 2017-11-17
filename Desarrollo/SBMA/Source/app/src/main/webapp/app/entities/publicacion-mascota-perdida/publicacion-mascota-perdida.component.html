@@ -23,6 +23,7 @@
             <th><span>Dueño</span></th>
             <th><span>Distrito</span></th>
             <th><span>Mascota</span></th>
+            <th><span>Recompensa</span></th>
             <th></th>
             </tr>
             </thead>
@@ -44,6 +45,10 @@
                     <div *ngIf="publicacionMascotaPerdida.mascota">
                         <a [routerLink]="['../mascota', publicacionMascotaPerdida.mascota?.id ]" >{{publicacionMascotaPerdida.mascota?.nombre}}</a>
                     </div>
+                </td>
+                <td>
+                    <span *ngIf="publicacionMascotaPerdida.recompensa else sinRecompensa">S/. {{publicacionMascotaPerdida.recompensa}}</span>
+                    <ng-template #sinRecompensa>-</ng-template>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

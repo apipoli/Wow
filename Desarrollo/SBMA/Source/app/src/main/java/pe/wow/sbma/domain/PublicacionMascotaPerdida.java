@@ -38,6 +38,10 @@ public class PublicacionMascotaPerdida implements Serializable {
     @Column(name = "estado", nullable = false)
     private EstadoMascotaPerdida estado;
 
+    @DecimalMin(value = "0")
+    @Column(name = "recompensa")
+    private Double recompensa;
+
     @ManyToOne(optional = false)
     @NotNull
     private User dueno;
@@ -111,6 +115,19 @@ public class PublicacionMascotaPerdida implements Serializable {
         this.estado = estado;
     }
 
+    public PublicacionMascotaPerdida recompensa(Double recompensa) {
+        this.recompensa = recompensa;
+        return this;
+    }
+
+    public void setRecompensa(Double recompensa) {
+        this.recompensa = recompensa;
+    }
+
+    public Double getRecompensa() {
+        return recompensa;
+    }
+
     public User getDueno() {
         return dueno;
     }
@@ -179,6 +196,7 @@ public class PublicacionMascotaPerdida implements Serializable {
             ", lugar='" + getLugar() + "'" +
             ", fechaEncuentro='" + getFechaEncuentro() + "'" +
             ", estado='" + getEstado() + "'" +
+            ", recompensa='" + getRecompensa() + "'" +
             "}";
     }
 }

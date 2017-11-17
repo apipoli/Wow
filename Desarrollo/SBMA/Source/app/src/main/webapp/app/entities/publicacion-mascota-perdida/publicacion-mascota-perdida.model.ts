@@ -12,6 +12,7 @@ export class PublicacionMascotaPerdida implements BaseEntity {
         public lugar?: string,
         public fechaEncuentro?: any,
         public estado?: EstadoMascotaPerdida,
+        public recompensa?: number,
         public dueno?: User,
         public distrito?: BaseEntity,
         public mascota?: BaseEntity,
