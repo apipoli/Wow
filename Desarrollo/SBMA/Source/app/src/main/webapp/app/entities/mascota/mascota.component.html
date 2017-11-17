@@ -18,7 +18,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nombre"><span>Nombre</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="meses"><span>Meses</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="meses"><span>Edad</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="tamano"><span>Tamaño</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="sexo"><span>Sexo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="foto"><span>Foto</span> <span class="fa fa-sort"></span></th>
@@ -31,7 +31,7 @@
             <tr *ngFor="let mascota of mascotas ;trackBy: trackId">
                 <td><a [routerLink]="['../mascota', mascota.id ]">{{mascota.id}}</a></td>
                 <td>{{mascota.nombre}}</td>
-                <td>{{mascota.meses}}</td>
+                <td>{{getEdad(mascota)}} año(s)</td>
                 <td>{{mascota.tamano}}</td>
                 <td>{{mascota.sexo}}</td>
                 <td>

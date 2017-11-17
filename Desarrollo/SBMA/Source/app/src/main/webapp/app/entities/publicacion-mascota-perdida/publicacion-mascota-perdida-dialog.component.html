@@ -100,6 +100,19 @@
                 Campo obligatorio.
             </small>
         </div>
+        <div class="form-group row">
+            <label class="form-control-label col-2" for="field_recompensa">Recompensa</label>
+            <div class="col-2">
+                <input type="number" class="form-control" name="recompensa" id="field_recompensa"
+                       [(ngModel)]="publicacionMascotaPerdida.recompensa" placeholder="S/." min="0" />
+                <div [hidden]="!(editForm.controls.recompensa?.dirty && editForm.controls.recompensa?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.recompensa?.errors?.min">
+                        Debe ingresar un número positivo.
+                    </small>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

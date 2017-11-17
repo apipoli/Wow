@@ -38,6 +38,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="recompensa" type="double">
+                <constraints nullable="true" />
+            </column>
+
             <column name="dueno_id" type="bigint">
                 <constraints nullable="false" />
             </column>

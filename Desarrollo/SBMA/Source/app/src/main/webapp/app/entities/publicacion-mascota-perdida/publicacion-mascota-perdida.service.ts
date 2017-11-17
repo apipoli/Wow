@@ -25,6 +25,7 @@ export class PublicacionMascotaPerdidaService {
 
     update(publicacionMascotaPerdida: PublicacionMascotaPerdida): Observable<PublicacionMascotaPerdida> {
         const copy = this.convert(publicacionMascotaPerdida);
+        console.log(copy);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);

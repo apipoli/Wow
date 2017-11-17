@@ -30,14 +30,14 @@
             <tr *ngFor="let mascota of mascotas ;trackBy: trackId">
                 <td><a [routerLink]="['../mascota', mascota.id ]">{{mascota.id}}</a></td>
                 <td>{{mascota.nombre}}</td>
-                <td>{{mascota.meses}}</td>
+                <td>{{getEdad(mascota)}} año(s)</td>
                 <td>{{mascota.tamano}}</td>
                 <td>{{mascota.sexo}}</td>
                 <td>
                     <a *ngIf="mascota.foto" (click)="openFile(mascota.fotoContentType, mascota.foto)">
-                        <img [src]="'data:' + mascota.fotoContentType + ';base64,' + mascota.foto" style="max-height: 30px;" alt="mascota image"/>
+                        <img style="width: 100px;" [src]="'data:' + mascota.fotoContentType + ';base64,' + mascota.foto" style="max-height: 30px;" alt="mascota image"/>
                     </a>
-                    <span *ngIf="mascota.foto">{{mascota.fotoContentType}}, {{byteSize(mascota.foto)}}</span>
+                    <!--<span *ngIf="mascota.foto">{{mascota.fotoContentType}}, {{byteSize(mascota.foto)}}</span>-->
                 </td>
                 <td>
                     <div *ngIf="mascota.raza">
