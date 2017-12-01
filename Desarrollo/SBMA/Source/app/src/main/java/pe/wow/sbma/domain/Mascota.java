@@ -29,7 +29,7 @@ public class Mascota implements Serializable {
 
     @NotNull
     @Column(name = "meses", nullable = false)
-    private String meses;
+    private int meses;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -79,16 +79,16 @@ public class Mascota implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getMeses() {
+    public int getMeses() {
         return meses;
     }
 
-    public Mascota meses(String meses) {
+    public Mascota meses(int meses) {
         this.meses = meses;
         return this;
     }
 
-    public void setMeses(String meses) {
+    public void setMeses(int meses) {
         this.meses = meses;
     }
 
