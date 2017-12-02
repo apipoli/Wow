@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity PublicacionMascotaPerdida.
+    -->
+    <changeSet id="20171101041750-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="dueno_id"
+                                 baseTableName="publicacion_mascota_perdida"
+                                 constraintName="fk_publicacion_mascota_perdida_dueno_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="distrito_id"
+                                 baseTableName="publicacion_mascota_perdida"
+                                 constraintName="fk_publicacion_mascota_perdida_distrito_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="distrito"/>
+
+        <addForeignKeyConstraint baseColumnNames="mascota_id"
+                                 baseTableName="publicacion_mascota_perdida"
+                                 constraintName="fk_publicacion_mascota_perdida_mascota_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mascota"/>
+
+    </changeSet>
+</databaseChangeLog>

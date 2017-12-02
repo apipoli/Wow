@@ -1,0 +1,133 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMascotaLabel">Registrar Mascota</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group row">
+            <label class="form-control-label col-2" for="field_raza">Raza</label>
+            <div class="col-10">
+                <select class="form-control" id="field_raza" name="raza" [(ngModel)]="mascota.raza"  required>
+                    <option *ngIf="!editForm.value.raza" [ngValue]="null" selected></option>
+                    <option [ngValue]="razaOption.id === mascota.raza?.id ? mascota.raza : razaOption" *ngFor="let razaOption of razas; trackBy: trackRazaById">{{razaOption.nombre}}</option>
+                </select>
+                <div [hidden]="!(editForm.controls.raza?.dirty && editForm.controls.raza?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.raza?.errors?.required">
+                        Campo obligatorio.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="form-control-label col-2" for="field_nombre">Nombre</label>
+            <div class="col-4">
+                <input type="text" class="form-control" name="nombre" id="field_nombre"
+                       [(ngModel)]="mascota.nombre" required />
+                <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.nombre?.errors?.required">
+                        Campo obligatorio.
+                    </small>
+                </div>
+            </div>
+            <label class="form-control-label col-2" for="field_sexo">Sexo</label>
+            <div class="col-4">
+                <select class="form-control" name="sexo" [(ngModel)]="mascota.sexo" id="field_sexo"  required>
+                    <option value="MACHO">MACHO</option>
+                    <option value="HEMBRA">HEMBRA</option>
+                </select>
+                <div [hidden]="!(editForm.controls.sexo?.dirty && editForm.controls.sexo?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.sexo?.errors?.required">
+                        Campo obligatorio.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="form-control-label col-2" for="field_anhos">Edad</label>
+            <div class="col-2">
+                <input type="number" class="form-control" name="anhos" id="field_anhos"
+                       [(ngModel)]="anhos" required placeholder="Años" min="0" max="20" />
+                <div [hidden]="!(editForm.controls.anhos?.dirty && editForm.controls.anhos?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.anhos?.errors?.required">
+                        Campo obligatorio.
+                    </small>
+                </div>
+            </div>
+            <div class="col-2">
+                <input type="number" class="form-control" name="meses" id="field_meses"
+                       [(ngModel)]="meses" required placeholder="Meses" min="0" max="11"/>
+                <div [hidden]="!(editForm.controls.meses?.dirty && editForm.controls.meses?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.meses?.errors?.required">
+                        Campo obligatorio.
+                    </small>
+                </div>
+            </div>
+            <label class="form-control-label col-2" for="field_tamano">Tamaño</label>
+            <div class="col-4">
+                <select class="form-control" name="tamano" [(ngModel)]="mascota.tamano" id="field_tamano"  required>
+                    <option value="PEQUENO">PEQUEÑO</option>
+                    <option value="MEDIANO">MEDIANO</option>
+                    <option value="GRANDE">GRANDE</option>
+                </select>
+                <div [hidden]="!(editForm.controls.tamano?.dirty && editForm.controls.tamano?.invalid)">
+                    <small class="form-text text-danger"
+                           [hidden]="!editForm.controls.tamano?.errors?.required">
+                        Campo obligatorio.
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="form-control-label col-2" for="field_foto">Foto</label>
+            <div>
+                <img [src]="'data:' + mascota.fotoContentType + ';base64,' + mascota.foto" style="max-height: 100px;" *ngIf="mascota.foto" alt="mascota image"/>
+                <div *ngIf="mascota.foto" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{mascota.fotoContentType}}, {{byteSize(mascota.foto)}}</span>
+                    <button type="button" (click)="clearInputImage('foto', 'fotoContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_foto" (change)="setFileData($event, mascota, 'foto', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="foto" id="field_foto"
+                [(ngModel)]="mascota.foto" required />
+            <input type="hidden" class="form-control" name="fotoContentType" id="field_fotoContentType"
+                [(ngModel)]="mascota.fotoContentType" />
+            <div [hidden]="!(editForm.controls.foto?.dirty && editForm.controls.foto?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.foto?.errors?.required">
+                   Campo obligatorio.
+                </small>
+            </div>
+        </div>
+        <!--<div class="form-group row">-->
+            <!--<label class="form-control-label col-2" for="field_dueno">Dueño</label>-->
+            <!--<select class="form-control" id="field_dueno" name="dueno" [(ngModel)]="mascota.dueno"  required>-->
+                <!--<option *ngIf="!editForm.value.dueno" [ngValue]="null" selected></option>-->
+                <!--<option [ngValue]="userOption.id === mascota.dueno?.id ? mascota.dueno : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<div [hidden]="!(editForm.controls.dueno?.dirty && editForm.controls.dueno?.invalid)">-->
+            <!--<small class="form-text text-danger"-->
+                <!--[hidden]="!editForm.controls.dueno?.errors?.required">-->
+                <!--Campo obligatorio.-->
+            <!--</small>-->
+        <!--</div>-->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancelar</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Guardar</span>
+        </button>
+    </div>
+</form>
