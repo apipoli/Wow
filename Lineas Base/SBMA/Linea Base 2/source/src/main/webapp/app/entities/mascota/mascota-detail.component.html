@@ -1,0 +1,56 @@
+
+<div *ngIf="mascota">
+    <h2><span>Mascota</span> {{mascota.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{mascota.nombre}}</span>
+        </dd>
+        <dt><span>Meses</span></dt>
+        <dd>
+            <span>{{mascota.meses}}</span>
+        </dd>
+        <dt><span>Tamaño</span></dt>
+        <dd>
+            <span>{{mascota.tamano}}</span>
+        </dd>
+        <dt><span>Sexo</span></dt>
+        <dd>
+            <span>{{mascota.sexo}}</span>
+        </dd>
+        <dt><span>Foto</span></dt>
+        <dd>
+            <div *ngIf="mascota.foto">
+                <a (click)="openFile(mascota.fotoContentType, mascota.foto)">
+                    <img [src]="'data:' + mascota.fotoContentType + ';base64,' + mascota.foto" style="max-width: 100%;" alt="mascota image"/>
+                </a>
+                {{mascota.fotoContentType}}, {{byteSize(mascota.foto)}}
+            </div>
+        </dd>
+        <dt><span>Raza</span></dt>
+        <dd>
+            <div *ngIf="mascota.raza">
+                <a [routerLink]="['/raza', mascota.raza?.id]">{{mascota.raza?.nombre}}</a>
+            </div>
+        </dd>
+        <dt><span>Dueño</span></dt>
+        <dd>
+            {{mascota.dueno?.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Retroceder</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'mascota/'+ mascota.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Editar</span>
+    </button>
+</div>
